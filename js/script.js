@@ -47,14 +47,13 @@ Vue.createApp({
   methods: {
       // quando il button è cliccato, decrementa di 1 il thumbIndex
       onPrevClick() {
+        this.activeThumbIndex--;
         // se l'indice dell'elemento è minore di zero, allora
         if (this.activeThumbIndex <= 0) {
           // sposta l'indice 
           this.activeThumbIndex = this.slides.length - 1;
-        } else {
-          // altrimenti decrementalo di 1
-          this.activeImageIndex--;
-        }
+        } 
+          
       },
       // quando il button è cliccato, aumenta di 1 il thumbIndex
       onNextClick() {
