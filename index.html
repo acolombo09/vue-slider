@@ -25,11 +25,14 @@
         <div class="container">
             <div class="slider-wrapper" tabindex="0">
                 <!-- uso il v-show perchè mi serve solo display none e
-                  il v-if mi dava errore, verificare -->
+                il v-if mi dava errore, verificare 
+                con mouseout (quando il mouse viene tolto), riparte l'autoplay-->
                 <div class="item"
                   v-for="(slideImg, i) in slides"
                   v-show="(activeThumbIndex === i)">
-                    <img v-bind:src="slideImg.image" v-bind:alt="slideImg.title" />
+                    <img v-bind:src="slideImg.image" v-bind:alt="slideImg.title"
+                    @mouseover="stopAutoplay"
+                    @mouseout="startAutoplay"/>
                     <div class="text">
                       <h3>{{slideImg.title}}</h3>
                       <p>{{slideImg.text}}</p>

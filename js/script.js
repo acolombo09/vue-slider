@@ -41,6 +41,7 @@ Vue.createApp({
           ],
 
           activeThumbIndex: 0,
+          intervalTimerId: null
       }
   },
 
@@ -49,7 +50,7 @@ Vue.createApp({
       onPrevClick() {
         this.activeThumbIndex--;
         // se l'indice dell'elemento è minore di zero, allora
-        if (this.activeThumbIndex <= 0) {
+        if (this.activeThumbIndex < 0) {
           // sposta l'indice 
           this.activeThumbIndex = this.slides.length - 1;
         } 
@@ -69,9 +70,18 @@ Vue.createApp({
       // al click rende attivo il thumb index come per i buttons
       onThumbClick(i){
         this.activeThumbIndex = i
+      },
+      startAutoplay(){
+        this.intervalTimerId = setInterval(() => {
+          this.onNextClick()
+        }, 1000)
+      },
+      stopAutoplay(){
+        clearInterval(this.intervalTimerId)
       }
+  },
 
+  mounted() {
+    this.startAutoplay()
   }
-
-
 }).mount("#app")
