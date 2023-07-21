@@ -72,6 +72,12 @@ Vue.createApp({
         this.activeThumbIndex = i
       },
       startAutoplay(){
+        // best practice: prima di avviare un timer, se ce ne sono altri attivi
+        // devo prima fermarli (non in questo caso)
+        if (this.intervalTimerId){
+          this.stopAutoplay();
+        }
+        
         this.intervalTimerId = setInterval(() => {
           this.onNextClick()
         }, 1000)
